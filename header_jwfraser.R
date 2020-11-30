@@ -28,7 +28,7 @@ library(rgeos)
 library(rlist)
 
 
-MonitoringSeason<-"2019"
+#MonitoringSeason<-"2019"
 
 OutDir <- 'out'
 dataOutDir <- file.path(OutDir,'data')
@@ -38,23 +38,23 @@ SpatialDir <- file.path('data','spatial')
 DataDir <- file.path('data')
 spatialOutDir <- file.path(OutDir,'spatial')
 
-WetspatialDir <- file.path('../../../Projects/ESI/Wetlands/Assessment/Data')
-#WetspatialDir <- file.path('/Users/darkbabine/Sync/Wetland/Tier 2/Data')
-SyncDir <- file.path('/Users/darkbabine/Sync')
-WetSampSpatialDir <- file.path('../Wetland_SkeenaESI_Monitoring/out/spatial')
-
-
+#WetspatialDir <- file.path('../../../Projects/ESI/Wetlands/Assessment/Data')
+#WetspatialDir <- file.path('/Users/jwfraser/Sync/Wetland/Tier 2/Data')
+SyncDir <- file.path('/Users/jwfraser/Sync')
+#WetSampSpatialDir <- file.path('../Wetland_SkeenaESI_Monitoring/out/spatial')
+ffhspatialdir <- file.path('../../../Projects/ESI/Fish and Fish Habitat/Assessment/Data')
+#ffhSampspatialdir <- file.path('../FFH_SkeenaESI_')
 
 GBdataOutDir <- file.path('../GB_Data/out/data')
 GBPDir <-file.path('../GB_Data/data/Population/Bear_Density_2018')
-ESIDir <- file.path('/Users/darkbabine/Dropbox (BVRC)/Projects/ESI')
-RoadDir <- file.path('/Users/darkbabine/Dropbox (BVRC)/_dev/Biodiversity/bc-raster-roads/data')
-ESIData <- file.path('/Users/darkbabine/Desktop')
-GISDir <- file.path('/Users/darkbabine/Dropbox (BVRC)/Library/GISFiles/BC/Shapefiles')
-GISSkDir <- file.path('/Users/darkbabine/Dropbox (BVRC)/Library/GISFiles/Skeena/Shapefiles')
-FREPDir<-file.path('/Users/darkbabine/Sync/Wetland/Tier 2/Data/FREP')
-Tier2Dir<-file.path('/Users/darkbabine/Sync/Wetland/Tier 2/Data')
-CGLDir<-file.path('/Users/darkbabine//Dropbox (BVRC)/Projects/UBM_LUP/data/CGL_Wetlands')
+ESIDir <- file.path('//spatialfiles.bcgov/work/srm/smt/Workarea/ArcProj/P17_Skeena_ESI')
+#RoadDir <- file.path('/Users/jwfraser/Dropbox (BVRC)/_dev/Biodiversity/bc-raster-roads/data')
+ESIData <- file.path('//spatialfiles.bcgov/work/srm/smt/Workarea/ArcProj/P17_Skeena_ESI/Data')
+#GISDir <- file.path('/Users/jwfraser/Dropbox (BVRC)/Library/GISFiles/BC/Shapefiles')
+#GISSkDir <- file.path('/Users/jwfraser/Dropbox (BVRC)/Library/GISFiles/Skeena/Shapefiles')
+FREPDir<-file.path('/Users/jwfraser/Sync/Wetland/Tier 2/Data/FREP')
+Tier2Dir<-file.path('/Users/jwfraser/Sync/Wetland/Tier 2/Data')
+#CGLDir<-file.path('/Users/jwfraser//Dropbox (BVRC)/Projects/UBM_LUP/data/CGL_Wetlands')
 
 
 dir.create(file.path(OutDir), showWarnings = FALSE)

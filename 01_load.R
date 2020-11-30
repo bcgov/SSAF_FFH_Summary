@@ -10,12 +10,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-source("header.R")
+source("header_jwfraser.R")
 
 ESI_file <- file.path("tmp/ESI")
 if (!file.exists(ESI_file)) {
   #Load ESI boundary
-  ESIin <- read_sf(file.path(ESIDir,'Data/Skeena_ESI_Boundary'), layer = "ESI_Skeena_Study_Area_Nov2017") %>%
+  ESIin <- read_sf(file.path(ESIDir,'Data/Current_Boundary'), layer = "SSAF_Boundary_Nov2017") %>%
     st_transform(3005)
   ESI <- st_cast(ESIin, "MULTIPOLYGON")
   saveRDS(ESI, file = ESI_file)
@@ -72,28 +72,29 @@ mapview(WetWshd) + mapview(Wshd) + mapview(WetWshd) + mapview(ESI)
 AOI.spatial <- ESI
 
 #Indicator data is in wetlands file - read in from 'Wetland_Skeena_ESI_Monitoring' repo out/spatial
-Wetlands<-read_sf(file.path(WetSampSpatialDir,"Wetlands3.gpkg"))
+!Watershed<-read_sf(file.path(ffhspatialdir,"Wetlands3.gpkg"))
 
 #Generate an ESI Wetlands point coverage if havent been done
 Pt_file <- file.path("tmp/waterpt")
 if (!file.exists(Pt_file)) {
-wetlandsXY <- st_centroid(Wetlands)
-wetpt <- st_coordinates(wetlandsXY)
-wetpt <- wetlandsXY %>%
-  cbind(wetpt) %>%
+FFH_XY <- st_centroid(FFH_Watershed)
+ffhpt <- st_coordinates(FFH_XY)
+ffhpt <- FFH_XY %>%
+  cbind(ffhpt) %>%
   st_drop_geometry()
 
-waterpt <- st_as_sf(wetpt, coords= c("X","Y"), crs = 3005) %>%
+waterpt <- st_as_sf(ffhpt, coords= c("X","Y"), crs = 3005) %>%
   st_intersection(AOI.spatial)
 waterpt <- waterpt %>%
   mutate(wet_id=as.numeric(rownames(waterpt)))
 #st_crs(waterpt)<-3005
 saveRDS(waterpt, file = Pt_file)
-write_sf(waterpt, file.path(spatialOutDir,"waterpt.gpkg"))
+write_sf(waterpt, file.path(spatialOutDir,"FFH_waterpt.gpkg"))
 }
 
 waterpt<-readRDS(Pt_file)
 
+#Not needed for FFH 
 #Read in Neil's moose stuff
-BrowsePercentinWetlands_2 <- data.frame(read_xlsx(path=file.path(DataDir,paste('BrowsePercentinWetlands_2.xlsx',sep='')),sheet='BrowsePercentinWetlands_2'))
+#BrowsePercentinWetlands_2 <- data.frame(read_xlsx(path=file.path(DataDir,paste('BrowsePercentinWetlands_2.xlsx',sep='')),sheet='BrowsePercentinWetlands_2'))
 

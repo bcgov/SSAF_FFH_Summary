@@ -10,7 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-source("header.R")
+source("header_jwfraser.R")
 
 #Add watersheds to wetlands
 #use centre point of wetland and assign each to a major watershed
