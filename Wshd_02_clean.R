@@ -15,30 +15,30 @@ source("header_jwfraser.R")
 #Add watersheds to wetlands
 #use centre point of wetland and assign each to a major watershed
 #See if it is already done - computationally intensive
-Wet_file <- file.path("tmp/Wetlands.spatial")
-if (!file.exists(Wet_file)) {
+ffh_file <- file.path("tmp/ffh.spatial")
+if (!file.exists(ffh_file)) {
 Wshd_pts <-st_intersection(waterpt, WetWshd) %>%
   st_drop_geometry() %>%
   dplyr::select('Wetland_Co', 'MWshd')
-
+#Unecessary
 #Join point coverage back to main wetland file
-Wetlands.spatial<-Wetlands %>%
+#ffh.spatial<-ffh %>%
   #st_drop_geometry %>%
-  left_join(Wshd_pts, by='Wetland_Co')
+  #left_join(Wshd_pts, by='Wetland_Co')
 
 #Set NULL to 0
 #Wetlands.spatial[is.na(Wetlands.spatial)] <- 0
-saveRDS(Wetlands.spatial, file = Wet_file)
+saveRDS(ffh.spatial, file = ffh_file)
 }
 
-Wetlands.spatial<-readRDS(file = Wet_file)
+ffh.spatial<-readRDS(file = ffh_file)
 
 #Clean up Wetlands attributes
-Wetlands.spatial<-Wetlands.spatial %>%
+ffh.spatial<-ffh.spatial %>%
   mutate(ECA_Final_PCNT=ifelse(ECA_Final_PCNT>100,0,ECA_Final_PCNT))
 
 #Generage Watershed units for first 3 watershed indicators
-Watersheds_Context<-Wetlands.spatial %>%
+Watersheds_Context<-ffh.spatial %>%
   st_drop_geometry() %>%
   group_by(WATERSHED_FEATURE_ID) %>%
   dplyr::summarise(MWshd=first(MWshd), Rd_Density_net=first(Rd_Density_net),

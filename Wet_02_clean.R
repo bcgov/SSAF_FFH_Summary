@@ -21,10 +21,11 @@ Wshd_pts <-st_intersection(waterpt, WetWshd) %>%
   st_drop_geometry() %>%
   dplyr::select('Wetland_Co', 'MWshd')
 
+#Not neeeded for FFH
 #Join point coverage back to main wetland file
-Wetlands.spatial<-Wetlands %>%
+#Wetlands.spatial<-Wetlands %>%
   #st_drop_geometry %>%
-  left_join(Wshd_pts, by='Wetland_Co')
+#  left_join(Wshd_pts, by='Wetland_Co')
 
 #Set NULL to 0
 #Wetlands.spatial[is.na(Wetlands.spatial)] <- 0
@@ -97,6 +98,9 @@ ffh.spatial<-ffh.spatial %>%
 #Cultural_Access_Class_LUT<-data.frame(Cultural_Access_Class=
 #                            sort(unique(Wetlands.spatial$Cultural_Access_Class)),
 #                            Cultural_Access_Class_flag=c('High','Low','Medium'))
+#Wetland End here
+
+#FFH LUT
 
 #Categroy is either High/Medium/Low, or High/Low for Yes/No, or High/Medium/Low/Zero
 ffh.spatial<-ffh.spatial %>%
@@ -112,7 +116,7 @@ ffh.spatial<-ffh.spatial %>%
   #left_join(Open_Wtr_Class_LUT)%>%
   #left_join(RAAD_500m_LUT)%>%
   #left_join(Cultural_Access_Class_LUT)
-  
+
   #Add ffh features here
   left_join()
 #data check
