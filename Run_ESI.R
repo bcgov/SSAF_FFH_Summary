@@ -12,29 +12,28 @@
 
 source('header.R')
 
-#Identify AOI, AOI shape file name and GBPUs to compare and % overlap
-#Input variables - passed to load script
+#Input variables - passed to subsequent script
 AOI<-'SkeenaESI'
-AOI.Name<-"Skeena ESI"
-#AOI.ShpName <- "ESI_Skeena_Study_Area_Nov2017"
-#AOI.id <- 'OBJECTID'
-
 Wshd.context<-c('Nechako','SkeenaE','SkeenaW','Nass','Coastal')
-#GBPU.context<-c('Babine','Bulkley-Lakes','Cranberry','Francois','Upper Skeena-Nass','Tweedsmuir')
-#Overlap<-0.20
-#AOI.dir <- '../../Projects/ESI/data/Skeena_ESI_Boundary'
 
 source("01_load.R")
 #Bear_Load(AOI, AOI.Name, AOI.ShpName, GBPU.context, Overlap)
 
 #Indiators selected for summarizing
-IndicatorsW<-c('ECA_Final_PCNT','RdsStrmXing_Density_net', 'Rd_Density_net')
+IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net')
+IndicatorsW_Label <- c('ECA','Road density')
+IndUnits <- c('%','km/km2')
+Thresh <- list(c(15,20),c(.4,1.2))
 
 #Clean data, select indicators set up fields for analysis
 source("02_clean.R")
 
-source("03_analysis_barchart.R")
+#Source boxplot function
+source("03_analysis_boxplotsWshd.R")
 
-source("03_analysis_BoxPlots.R")
+#Do a loop for each Major Watershed in the unit and one for the entire AOI
+for (i in 1:nrow(nameWshd)) {
+  Wshd.name <- nameWshd[i,]
+  Boxplots(Prov, AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir)
+}
 
-#Boxplots(Prov, AOI.name, GBPU.name, GBPU.name, dir.figs, dir.data)

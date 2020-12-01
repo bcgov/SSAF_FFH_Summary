@@ -29,31 +29,18 @@
 # Based on aquatics summary R script generate box plots for gbears
 #############
 
-dir.data <- dataOutDir
-dir.figs<- figsOutDir
-
-Value.name<-"Wetlands"
-headcolor <- "lightskyblue2"
-AOI.name <- AOI
-Prov <- 0 #will compare against GBPUs that provide context for AOI.
-
-#source files for each panel - watesheds first
-source("03_analysis_boxplotsWshd.R")
+#source files for each panel
+source("03_analysis_BoxPlots_2.R")
 
 #Do a loop for each Major Watershed in the unit and one for the entire AOI
 for (i in 1:nrow(nameWshd)) {
   Wshd.name <- nameWshd[i,]
-  Boxplots(Prov, AOI, Wshd.name, Wshd.name, dir.figs, dir.data)
+  #Loop through each of the indicators
+  for (j in 1:length(IndicatorsW)) {
+    Ind<-IndicatorsW[j]
+    IndL<-IndicatorsW_Label[j]
+    Thrsh <- Thresh[[j]]
+    IndU <- IndUnits[j]
+  Boxplots(AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir, Ind, IndL,Thrsh, IndU)
+  }
 }
-
-#Now do plots for wetlands
-source("03_analysis_boxplotsWet.R")
-
-#Do a loop for each Major Watershed in the unit and one for the entire AOI
-for (i in 1:nrow(nameWshd)) {
-  Wshd.name <- nameWshd[i,]
-  Boxplots(Prov, AOI, Wshd.name, Wshd.name, dir.figs, dir.data)
-}
-
-
-
