@@ -30,25 +30,8 @@ source("01_load.R")
 #Indiators selected for summarizing
 IndicatorsW<-c('ECA_Final_PCNT','RdsStrmXing_Density_net', 'Rd_Density_net')
 
-
-Indicators<-c('RoadDensity_100m','RoadDensity_2000m','Nat_SemiNat_PCTR')
-CatIndicators<-c('FloodControl_function_flag','SocietalAsset_5km_ds_flag', 'WaterPurification_function_flag',
-                 'SocietalAsset_WQ_Class_flag','Aquatic_Life_Support_flag','Moose_Forage_flag',
-                 'Sufficient_OG_flag','Protected_Ovrlp_flag','Open_Wtr_Class_flag',
-                 'RAAD_500m_flag','Cultural_Access_Class_flag')
-
-#Indicators<-c('Mort_Flag', 'rdDens_Flag','Core_Flag', 'Front_Country_Flag','LU_hunterDayDens_Flag', 'Q_Food','BEC_midSeral_Conifer_gt30_Flag','Protected_Flag','WHA_Flag')
-#IndicatorNames<-c('RoadDensity')
-#IndicatorNames<-c('Mortality','RoadDensity','CoreSercurityAreas','FrontCountry','HunterDensity','QaulityFood','MidSeral','HabitatProtection','WHA')
-#num_indicators<-length(Indicators)
-#IndicatorList<-c(0) #set indicator to 0
-#IndicatorList<-c(0,0,0,0,0,0,0,0,0) #set indicator to 0
-#AOIIndicatorList<-c(0) #set indicator to 0 for AOI
-#AOIIndicatorList<-c(0,0,0,0,0,0,0,0,0) #set indicator to 0 for AOI
-
 #Clean data, select indicators set up fields for analysis
-source("Wet_02_clean.R")
-source("Wshd_02_clean.R")
+source("02_clean.R")
 
 source("03_analysis_barchart.R")
 
