@@ -17,7 +17,8 @@ AOI<-'SkeenaESI'
 Wshd.context<-c('Nechako','SkeenaE','SkeenaW','Nass','Coastal')
 
 #Indicators selected for summarizing
-IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net')
+IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net', 'Dam_Lines_Count', 'POD_Count', 'Mine_Points_Count', 'AU_TOT_Disturb_all_PCNT
+', 'RdsStrmXing_Density_net', 'RdsStrmBuff100_Density_net')
 IndicatorsW_Label <- c('ECA','Road density')
 IndUnits <- c('%','km/km2')
 Thresh <- list(c(15,20),c(.4,1.2))
