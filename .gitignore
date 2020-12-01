@@ -55,3 +55,4 @@ vignettes/*.pdf
 /out/
 #Archive
 /archive/
+/*csv*/
