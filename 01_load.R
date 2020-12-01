@@ -10,12 +10,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-source("header_jwfraser.R")
+source("header.R")
 
 ESI_file <- file.path("tmp/ESI")
 if (!file.exists(ESI_file)) {
   #Load ESI boundary
-  ESIin <- read_sf(file.path(ESIDir,'Data/Current_Boundary'), layer = "SSAF_Boundary_Nov2017") %>%
+  ESIin <- read_sf(file.path(ESIDir,'Skeena_ESI_Boundary'), layer = "ESI_Skeena_Study_Area_Nov2017") %>%
     st_transform(3005)
   ESI <- st_cast(ESIin, "MULTIPOLYGON")
   saveRDS(ESI, file = ESI_file)
@@ -71,10 +71,16 @@ mapview(WetWshd) + mapview(Wshd) + mapview(WetWshd) + mapview(ESI)
 # AOI for comparing watersheds to ESI full area
 AOI.spatial <- ESI
 
-#Indicator data is in wetlands file - read in from 'Wetland_Skeena_ESI_Monitoring' repo out/spatial
-!Watershed<-read_sf(file.path(ffhspatialdir,"Wetlands3.gpkg"))
+# Read in Watershed indicator data
+Wshd_gdb <- list.files(file.path(FFHSpatialDir), pattern = ".gdb", full.names = TRUE)[1]#SSAF_ESI_T1_FFH.gdb
+Wshd_list <- st_layers(Wshd_gdb)
+FFH_Watershed<-read_sf(Wshd_gdb, layer = "SSAF_CEF_Aquatics_Indicators_2018_200428_200914") %>%
+  st_transform(3005)
 
-#Generate an ESI Wetlands point coverage if havent been done
+#Indicator data is in wetlands file - read in from 'Wetland_Skeena_ESI_Monitoring' repo out/spatial
+#!Watershed<-read_sf(file.path(ffhspatialdir,"Wetlands3.gpkg"))
+
+#Generate an ESI Wetlands point coverage if it hasnt been done
 Pt_file <- file.path("tmp/waterpt")
 if (!file.exists(Pt_file)) {
 FFH_XY <- st_centroid(FFH_Watershed)
@@ -94,7 +100,7 @@ write_sf(waterpt, file.path(spatialOutDir,"FFH_waterpt.gpkg"))
 
 waterpt<-readRDS(Pt_file)
 
-#Not needed for FFH 
+#Not needed for FFH
 #Read in Neil's moose stuff
 #BrowsePercentinWetlands_2 <- data.frame(read_xlsx(path=file.path(DataDir,paste('BrowsePercentinWetlands_2.xlsx',sep='')),sheet='BrowsePercentinWetlands_2'))
 
