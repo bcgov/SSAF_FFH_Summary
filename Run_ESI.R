@@ -16,24 +16,33 @@ source('header.R')
 AOI<-'SkeenaESI'
 Wshd.context<-c('Nechako','SkeenaE','SkeenaW','Nass','Coastal')
 
-source("01_load.R")
-#Bear_Load(AOI, AOI.Name, AOI.ShpName, GBPU.context, Overlap)
-
-#Indiators selected for summarizing
+#Indicators selected for summarizing
 IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net')
 IndicatorsW_Label <- c('ECA','Road density')
 IndUnits <- c('%','km/km2')
 Thresh <- list(c(15,20),c(.4,1.2))
 
+#Load all the data
+source("01_load.R")
+
 #Clean data, select indicators set up fields for analysis
 source("02_clean.R")
 
 #Source boxplot function
-source("03_analysis_boxplotsWshd.R")
+source("03_analysis_BoxPlots.R")
 
-#Do a loop for each Major Watershed in the unit and one for the entire AOI
+#Do a loop for each Major Watershed
 for (i in 1:nrow(nameWshd)) {
   Wshd.name <- nameWshd[i,]
-  Boxplots(Prov, AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir)
+
+  #Loop through each of the indicators and generate box plot
+  for (j in 1:length(IndicatorsW)) {
+    Ind<-IndicatorsW[j]
+    IndL<-IndicatorsW_Label[j]
+    Thrsh <- Thresh[[j]]
+    IndU <- IndUnits[j]
+    Boxplots(AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir, Ind, IndL,Thrsh, IndU)
+  }
+
 }
 
