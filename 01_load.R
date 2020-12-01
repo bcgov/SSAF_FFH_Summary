@@ -58,12 +58,12 @@ Nass<-Wshd.dat %>%
 Wshd_LUT<-rbind(Coastal, Nass, SkeenaW, SkeenaE,Nechako)
 
 #Join Wshd_LUT back to spatial group by MWshd to make summary watersheds
-WetWshd<-Wshd %>%
+MajorWshd<-Wshd %>%
   left_join(Wshd_LUT, by='SUB_SUB_DRAINAGE_AREA_NAME') %>%
   group_by(MWshd) %>%
   dplyr::summarise()
 
-write_sf(WetWshd, file.path(spatialOutDir,"WetWshd.gpkg"))
+write_sf(MajorWshd, file.path(spatialOutDir,"MajorWshd.gpkg"))
 
 #Check data
 mapview(WetWshd) + mapview(Wshd) + mapview(WetWshd) + mapview(ESI)
@@ -75,7 +75,9 @@ AOI.spatial <- ESI
 Wshd_gdb <- list.files(file.path(FFHSpatialDir), pattern = ".gdb", full.names = TRUE)[1]#SSAF_ESI_T1_FFH.gdb
 Wshd_list <- st_layers(Wshd_gdb)
 FFH_Watershed<-read_sf(Wshd_gdb, layer = "SSAF_CEF_Aquatics_Indicators_2018_200428_200914") %>%
-  st_transform(3005)
+  st_transform(3005) %>%
+  st_buffer(0) %>% #fix for self-intersection issues
+  st_intersection(AOI.spatial)
 
 #Indicator data is in wetlands file - read in from 'Wetland_Skeena_ESI_Monitoring' repo out/spatial
 #!Watershed<-read_sf(file.path(ffhspatialdir,"Wetlands3.gpkg"))

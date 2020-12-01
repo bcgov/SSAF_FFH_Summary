@@ -10,7 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-source('header_jwfraser.R')
+source('header.R')
 
 #Identify AOI, AOI shape file name and GBPUs to compare and % overlap
 #Input variables - passed to load script
@@ -27,8 +27,10 @@ Wshd.context<-c('Nechako','SkeenaE','SkeenaW','Nass','Coastal')
 source("01_load.R")
 #Bear_Load(AOI, AOI.Name, AOI.ShpName, GBPU.context, Overlap)
 
-#Indiators selected for summarzing
-IndicatorsW<-c('Rd_Density_net','ECA_Final_PCNT', 'Pnt_Src_Plltn_Final_Count')
+#Indiators selected for summarizing
+IndicatorsW<-c('ECA_Final_PCNT','RdsStrmXing_Density_net', 'Rd_Density_net')
+
+
 Indicators<-c('RoadDensity_100m','RoadDensity_2000m','Nat_SemiNat_PCTR')
 CatIndicators<-c('FloodControl_function_flag','SocietalAsset_5km_ds_flag', 'WaterPurification_function_flag',
                  'SocietalAsset_WQ_Class_flag','Aquatic_Life_Support_flag','Moose_Forage_flag',
