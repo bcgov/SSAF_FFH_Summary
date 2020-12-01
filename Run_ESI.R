@@ -22,6 +22,18 @@ IndicatorsW_Label <- c('ECA','Road density')
 IndUnits <- c('%','km/km2')
 Thresh <- list(c(15,20),c(.4,1.2))
 
+#Read or create LUTs
+#eg.
+#Aquatic_Life_Support	Aquatic_Life_Support_flag
+#High	High
+#Low	Low
+#Medium	Medium
+LUTexample<-read.table(file = file.path(ESIDir,"Water/Aquatic_Life_Support_LUT.csv"))
+#Aquatic_Life_Support (Yes/No)
+Aquatic_Life_Support_LUT<-data.frame(Aquatic_Life_Support=
+                          sort(unique(Wetlands.spatial$Aquatic_Life_Support)),
+                          Aquatic_Life_Support_flag=c('High','Low','Medium'))
+
 #Load all the data
 source("01_load.R")
 

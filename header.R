@@ -46,7 +46,7 @@ SyncDirR<-file.path('../../../../Sync')
 SyncDir <- file.path(SyncDirR)
 
 FFHSpatialDir <- file.path(SyncDir,'Fish and Fish Habitat/Tier 1/Assessment/Final Package - 2020/Data')
-ESIDir <- file.path(SyncDir,'PT and STC/Science and Technical Committee (STC)/Base Information/Data')
+ESIDir <- file.path(SyncDir,'STC/Science and Technical Committee/Base Information/Data')
 
 #Not sure we need these?
 #ffhSampspatialdir <- file.path('../FFH_SkeenaESI_')
