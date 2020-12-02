@@ -40,6 +40,10 @@ names(LUT_List) <- x
 <<<<<<< Updated upstream
 #Aquatic_Life_Support (Yes/No)
 #R code for generating LUT
+=======
+#LUTexample<-read.table(file = file.path(ESIDir,"Water/Aquatic_Life_Support_LUT.csv"))
+#Aquatic_Life_Support (Yes/No)
+>>>>>>> Stashed changes
 #Aquatic_Life_Support_LUT<-data.frame(Aquatic_Life_Support=
 #                          sort(unique(Wetlands.spatial$Aquatic_Life_Support)),
 #                          Aquatic_Life_Support_flag=c('High','Low','Medium'))
