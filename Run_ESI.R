@@ -22,14 +22,16 @@ IndicatorsW_Label <- c('ECA','Road density', 'Dam', 'Water Licenses', 'Total Lan
 IndUnits <- c('%','km/km2', '#', '#', '%', '#/km2', 'km/km2', 'km/km2', 'Score', '#', '%', '%', '%', '%', '%')
 Thresh <- list(c(15,20),c(.4,1.2),c(1,3),c(1,3),c(25,75),c(0.16,0.32),c(0.08,0.16),c(0.06,0.12),c(2000,4000),c(1,5),c(2,20),c(5,50),c(5,50),c(5,15),c(5,25))
 
+#LUT Attempt
+
 #Read spreadsheet names from FFH_LUTs.xlsx
-LUT_In<- excel_sheets(file.path(ESIDir,'Water/FFH_LUTs.xlsx'))
+#LUT_In<- excel_sheets(file.path(ESIDir,'Water/FFH_LUTs.xlsx'))
 #Subsequent sheets are veg plots
-x<-LUT_In[1:length(LUT_In)]
-LUT_List<-lapply(x,function(x) {
-  read_excel(file.path(ESIDir,'Water/FFH_LUTs.xlsx'), sheet=x)
-})
-names(LUT_List) <- x
+#x<-LUT_In[1:length(LUT_In)]
+#LUT_List<-lapply(x,function(x) {
+#  read_excel(file.path(ESIDir,'Water/FFH_LUTs.xlsx'), sheet=x)
+#})
+#names(LUT_List) <- x
 
 #or create LUTs
 #eg.
@@ -37,16 +39,18 @@ names(LUT_List) <- x
 #High	High
 #Low	Low
 #Medium	Medium
-<<<<<<< Updated upstream
+#<<<<<<< Updated upstream
 #Aquatic_Life_Support (Yes/No)
 #R code for generating LUT
-=======
+#=======
 #LUTexample<-read.table(file = file.path(ESIDir,"Water/Aquatic_Life_Support_LUT.csv"))
 #Aquatic_Life_Support (Yes/No)
->>>>>>> Stashed changes
+#>>>>>>> Stashed changes
 #Aquatic_Life_Support_LUT<-data.frame(Aquatic_Life_Support=
 #                          sort(unique(Wetlands.spatial$Aquatic_Life_Support)),
 #                          Aquatic_Life_Support_flag=c('High','Low','Medium'))
+
+#End
 
 #Load all the data
 source("01_load.R")
