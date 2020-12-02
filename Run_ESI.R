@@ -37,6 +37,7 @@ names(LUT_List) <- x
 #High	High
 #Low	Low
 #Medium	Medium
+<<<<<<< Updated upstream
 #Aquatic_Life_Support (Yes/No)
 #R code for generating LUT
 #Aquatic_Life_Support_LUT<-data.frame(Aquatic_Life_Support=
