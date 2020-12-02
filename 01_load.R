@@ -15,7 +15,7 @@ source("header.R")
 ESI_file <- file.path("tmp/ESI")
 if (!file.exists(ESI_file)) {
   #Load ESI boundary
-  ESIin <- read_sf(file.path(ESIDir,'Skeena_ESI_Boundary'), layer = "ESI_Skeena_Study_Area_Nov2017") %>%
+  ESIin <- read_sf(file.path(ESIDir,'Boundaries/SSAF Boundary'), layer = "ESI_Skeena_Study_Area_Nov2017") %>%
     st_transform(3005)
   ESI <- st_cast(ESIin, "MULTIPOLYGON")
   saveRDS(ESI, file = ESI_file)
