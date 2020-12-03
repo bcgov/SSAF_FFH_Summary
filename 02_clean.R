@@ -42,7 +42,7 @@ lapply(Indicators_df, range, na.rm = TRUE)
 
 Watersheds_Context<-Watersheds_Context %>%
    mutate(ECA_Final_PCNT=ifelse(ECA_Final_PCNT>100,0,ECA_Final_PCNT))
-   mutate(Rip_Tot_All_Dstrb_PCNT=ifelse(is.na(Rip_Tot_All_Dstrb_PCNT),0,Rip_Tot_All_Dstrb_PCNT))
+   #mutate(Rip_Tot_All_Dstrb_PCNT=ifelse(is.na(Rip_Tot_All_Dstrb_PCNT),0,Rip_Tot_All_Dstrb_PCNT))
 write.table(Watersheds_Context,file = file.path(dataOutDir,"Watersheds_Context.csv"),append = FALSE, quote = TRUE, row.names = FALSE, col.names = TRUE, sep=",")
 
 #Loop through Watersheds, AOI and indicators and output analysis ready data sets
