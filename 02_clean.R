@@ -30,9 +30,11 @@ saveRDS(ffh.spatial, file = ffh_file)
 
 ffh.spatial<-readRDS(file = ffh_file)
 
-#Generate Watershed units for first 3 watershed indicators
+#Generate Watershed units for watershed indicators
 Watersheds_Context<-ffh.spatial %>%
   st_drop_geometry()
+
+print (IndicatorsW)
 
 #Check continuous indicator distribution and clean up where needed
 Indicators_df<-Watersheds_Context[IndicatorsW]

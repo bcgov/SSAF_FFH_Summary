@@ -66,15 +66,17 @@ MajorWshd<-Wshd %>%
 write_sf(MajorWshd, file.path(spatialOutDir,"MajorWshd.gpkg"))
 
 #Check data
-mapview(WetWshd) + mapview(Wshd) + mapview(WetWshd) + mapview(ESI)
-
+#Wetlands
+#mapview(WetWshd) + mapview(Wshd) + mapview(WetWshd) + mapview(ESI)
+#Watershed
+mapview(Wshd) + mapview(ESI)
 # AOI for comparing watersheds to ESI full area
 AOI.spatial <- ESI
 
 # Read in Watershed indicator data
 Wshd_gdb <- list.files(file.path(FFHSpatialDir), pattern = ".gdb", full.names = TRUE)[1]#SSAF_ESI_T1_FFH.gdb
 Wshd_list <- st_layers(Wshd_gdb)
-FFH_Watershed<-read_sf(Wshd_gdb, layer = "SSAF_CEF_Aquatics_Indicators_2018_200428_200914") %>%
+FFH_Watershed<-read_sf(Wshd_gdb, layer = "SSAF_2020_ForCode_201201") %>%
   st_transform(3005) %>%
   st_buffer(0) %>% #fix for self-intersection issues
   st_intersection(AOI.spatial)
