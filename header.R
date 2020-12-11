@@ -40,12 +40,12 @@ DataDir <- file.path('data')
 spatialOutDir <- file.path(OutDir,'spatial')
 
 #Set user specific paths
-SyncDirR<-file.path('../../../../Sync')
-#SyncDirR<-file.path('/Users/jwfraser/Sync')
+#SyncDirR<-file.path('../../../../Sync')
+SyncDirR<-file.path('/Users/jwfraser/Sync')
 
 SyncDir <- file.path(SyncDirR)
 
-FFHSpatialDir <- file.path(SyncDir,'Fish and Fish Habitat/Tier 1/Assessment/Final Package - 2020/Data')
+FFHSpatialDir <- file.path(SyncDir,'Fish and Fish Habitat/Tier 1/Assessment/Data/BoxPlot')
 ESIDir <- file.path(SyncDir,'PT and STC/Science and Technical Committee/Base Information/Data')
 
 #Not sure we need these?

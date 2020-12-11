@@ -28,7 +28,7 @@ Boxplots <- function(AOI.name, Wet.name, Wet.abbrev, dir.figs, dir.data, Inds, I
   Box.2(dataframe1=dataWshd, dataframe2=dataSSAF,
         use.field=Inds,
         use.xlab=expression(Inds_Label),
-        use.units=quote(InU),
+        use.units=InU,
         use.t=thresh,
         use.filename=file.path(dir.figs,paste(Wet.abbrev,"_",Inds,".png",sep="")),
         use.cuname=Wet.name,

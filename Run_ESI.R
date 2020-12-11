@@ -17,10 +17,13 @@ AOI<-'SkeenaESI'
 Wshd.context<-c('Nechako','SkeenaE','SkeenaW','Nass','Coastal')
 
 #Indicators selected for summarizing
-IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net', 'Dam_Lines_Count', 'POD_Count', 'Mine_Points_Count', 'AU_TOT_Disturb_all_PCNT', 'RdsStrmXing_Density_net', 'RdsStrmBuff100_Density_net', 'RdSteepSlopes_Density_net', 'DDR_Score', 'Pnt_Src_Plltn_Final_Count', 'Lakes_Wetlands_PCNT', 'Summer_Sens_PCNT', 'Winter_Sens_PCNT', 'Rip_Tot_All_Dstrb_PCNT', 'Second_Growth_PCNT_net')
-IndicatorsW_Label <- c('ECA','Road density', 'Dam', 'Water Licenses', 'Total Land Disturbance', 'Road Stream Crossing Density', 'Road Desnity near Streams', 'Roads on Unstable Slopes', 'Drainage Density Ruggedness', 'Point Source Pollution', 'Extent of Lakes and Wetlands', 'Summer Low Flow Sensitivity', 'Winter Low Flow Sensitivity', 'Riparian Distrubance', 'Amount of 2nd Growth')
-IndUnits <- c('%','km/km2', '#', '#', '%', '#/km2', 'km/km2', 'km/km2', 'Score', '#', '%', '%', '%', '%', '%')
-Thresh <- list(c(15,20),c(.4,1.2),c(1,3),c(1,3),c(25,75),c(0.16,0.32),c(0.08,0.16),c(0.06,0.12),c(2000,4000),c(1,5),c(2,20),c(5,50),c(5,50),c(5,15),c(5,25))
+#Full
+IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net', 'AU_TOT_Disturb_all_PCNT', 'DDR_Score', 'Pnt_Src_Plltn_Final_Count', 'Rip_Tot_All_Dstrb_PCNT', 'Second_Growth_PCNT_net', 'Salmonid_hab_KM', 'Spawning_Total_KM')
+#Test Size
+#IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net','Dam_Lines_Count', 'Rip_Tot_All_Dstrb_PCNT', 'Salmonid_hab_KM', 'Spawning_Total_KM')
+IndicatorsW_Label <- c('ECA','Road density', 'Total Land Disturbance', 'Drainage Density Ruggedness', 'Point Source Pollution', 'Riparian Distrubance', 'Amount of 2nd Growth', 'Modelled Salmon Habitat', 'Spawning Habitat')
+IndUnits <- c('%','km/km2', '%', '#/km2', 'km/km2', 'km/km2', 'Score', '#', '%', '%', 'Km', 'Km')
+Thresh <- list(c(15,20),c(.4,1.2),c(25,75),c(2000,4000),c(1,5),c(5,15),c(5,25), c(50, 200), c(5, 20))
 
 #LUT Attempt
 
