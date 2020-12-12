@@ -10,7 +10,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-  Box.2<-function(dataframe1, dataframe2, use.field="", use.xlab="", use.units="", use.t, use.filename="", use.cuname="", use.compUnit=""){
+#Box.2<-function(dataframe1, dataframe2, use.field="", use.xlab, use.units="", use.t, use.filename="", use.cuname="", use.compUnit=""){
+Box.2<-function(dataframe1, dataframe2, use.field="", use.xlab="", use.units="", use.t, use.filename="", use.cuname="", use.compUnit=""){
     use.df1<-as.numeric(unlist(dataframe1[use.field]))
     use.df2<-as.numeric(unlist(subset(dataframe2[use.field],dataframe2[use.field]!="-")))
     n.df1<-length(use.df1)
@@ -29,7 +30,8 @@
     # empty plot
     boxplot(list(use.df1,use.df2),horizontal=TRUE,las=1,
             medlty='blank',boxlty="blank",whisklty="blank",names=c("",""),
-            staplelty='blank',outlty='blank',outpch=NA)
+            staplelty='blank',outlty='blank',outpch=NA,
+            xlab=use.xlab)
 
     # draw shaded green/yellow/red background based on threshold values
     cust.green <- rgb(101,163, 0, alpha=150, maxColorValue=255)

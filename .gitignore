@@ -56,3 +56,5 @@ vignettes/*.pdf
 #Archive
 /archive/
 *csv*
+
+.Rhistory

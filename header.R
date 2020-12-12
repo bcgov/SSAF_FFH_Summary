@@ -40,8 +40,8 @@ DataDir <- file.path('data')
 spatialOutDir <- file.path(OutDir,'spatial')
 
 #Set user specific paths
-#SyncDirR<-file.path('../../../../Sync')
-SyncDirR<-file.path('/Users/jwfraser/Sync')
+SyncDirR<-file.path('../../../../Sync')
+#SyncDirR<-file.path('/Users/jwfraser/Sync')
 
 SyncDir <- file.path(SyncDirR)
 

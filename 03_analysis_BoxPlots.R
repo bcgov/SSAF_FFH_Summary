@@ -27,7 +27,8 @@ Boxplots <- function(AOI.name, Wet.name, Wet.abbrev, dir.figs, dir.data, Inds, I
   thresh<-Threshs #passing in the thresholds for the indicator
   Box.2(dataframe1=dataWshd, dataframe2=dataSSAF,
         use.field=Inds,
-        use.xlab=expression(Inds_Label),
+        #use.xlab=expression(Inds_Label),
+        use.xlab=Inds_Label,
         use.units=InU,
         use.t=thresh,
         use.filename=file.path(dir.figs,paste(Wet.abbrev,"_",Inds,".png",sep="")),
