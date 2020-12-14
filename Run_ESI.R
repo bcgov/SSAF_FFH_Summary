@@ -24,10 +24,10 @@ IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net', 'AU_TOT_Disturb_all_PCNT',
 
 #Test Size
 #IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net','Dam_Lines_Count', 'Rip_Tot_All_Dstrb_PCNT', 'Salmonid_hab_KM', 'Spawning_Total_KM')
-IndicatorsW_Label <- c('ECA','Road density', 'Total Land Disturbance', 'Drainage Density Ruggedness', 'Point Source Pollution', 'Riparian Distrubance', 'Amount of 2nd Growth', 'Modelled Salmon Habitat', 'Spawning Habitat')
-IndUnits <- c('%', 'km/km2', '%',
-              '#/km2',  'n','%',
-              '%','km','km')
+IndicatorsW_Label <- c('ECA','Road density', 'Total Land Disturbance', 'Drainage Density Ruggedness',
+                       'Point Source Pollution', 'Riparian Distrubance', 'Amount of 2nd Growth',
+                       'Modelled Salmon Habitat', 'Spawning Habitat')
+IndUnits <- c('%', 'km/km2', '%', 'Score','#','%','%','km','km')
 Thresh <- list(c(15,20),c(.4,1.2),c(25,75),c(2000,4000),c(1,5),c(5,15),c(5,25), c(50, 200), c(5, 20))
 
 #LUT Attempt
