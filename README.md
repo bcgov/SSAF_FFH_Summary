@@ -1,3 +1,5 @@
+[![img](https://img.shields.io/badge/Lifecycle-Stable-97ca00)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
+
 This repository generates figures for Skeena East ESI fish and fish habitat (F+FH) state of the value executive summary.
 Usage
 
