@@ -17,18 +17,25 @@ AOI<-'SkeenaESI'
 Wshd.context<-c('Nechako','SkeenaE','SkeenaW','Nass','Coastal')
 
 #Indicators selected for summarizing
-#Full
+
+###### Change here for Risk Indicators
 IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net', 'AU_TOT_Disturb_all_PCNT',
                'DDR_Score', 'Pnt_Src_Plltn_Final_Count', 'Rip_Tot_All_Dstrb_PCNT',
-               'Second_Growth_PCNT_net', 'Salmonid_hab_KM', 'Spawning_Total_KM')
+               'Second_Growth_PCNT_net')
 
-#Test Size
+
 #IndicatorsW<-c('ECA_Final_PCNT', 'Rd_Density_net','Dam_Lines_Count', 'Rip_Tot_All_Dstrb_PCNT', 'Salmonid_hab_KM', 'Spawning_Total_KM')
-IndicatorsW_Label <- c('ECA','Road density', 'Total Land Disturbance', 'Drainage Density Ruggedness',
-                       'Point Source Pollution', 'Riparian Distrubance', 'Amount of 2nd Growth',
-                       'Modelled Salmon Habitat', 'Spawning Habitat')
-IndUnits <- c('%', 'km/km2', '%', 'Score','#','%','%','km','km')
-Thresh <- list(c(15,20),c(.4,1.2),c(25,75),c(2000,4000),c(1,5),c(5,15),c(5,25), c(50, 200), c(5, 20))
+IndicatorsW_Label <- c('ECA','Road density', 'Total Land Disturbance',
+                       'Drainage Density Ruggedness', 'Point Source Pollution',
+                       'Riparian Distrubance', 'Amount of 2nd Growth')
+IndUnits <- c('%', 'km/km2', '%', 'Score','#','%','%')
+Thresh <- list(c(15,20),c(.4,1.2),c(25,75),c(2000,4000),c(1,5),c(5,15),c(5,25))
+
+#######Change here for Non-risk indicators
+IndicatorsF<-c('Salmonid_hab_KM', 'Spawning_Total_KM')
+IndicaotrsF_Label <- c('Modelled Salmon Habitat', 'Spawning Habitat')
+IndUnitsF <- c('km','km')
+ThreshF <- list(c(50, 200), c(5, 20))
 
 #LUT Attempt
 
@@ -81,6 +88,12 @@ for (i in 1:nrow(nameWshd)) {
     IndU <- IndUnits[j]
     Boxplots(AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir, Ind, IndL,Thrsh, IndU)
   }
-
+  for (k in 1:length(IndicatorsF)){
+    IndF<-IndicatorsF[k]
+    IndLF<-IndicaotrsF_Label[k]
+    ThrshF <- ThreshF[[k]]
+    IndUF <- IndUnitsF[k]
+    BoxplotBack(AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir, IndF, IndLF, ThrshF, IndUF)
+  }
 }
 
