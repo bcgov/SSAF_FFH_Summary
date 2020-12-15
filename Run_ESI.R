@@ -77,8 +77,8 @@ source("02_clean.R")
 source("03_analysis_BoxPlots.R")
 
 #Do a loop for each Major Watershed
-for (i in 1:nrow(nameWshd)) {
-  Wshd.name <- nameWshd[i,]
+for (i in 1:length(Wshd.context)) {
+  Wshd.name <- Wshd.context[i]
 
   #Loop through each of the indicators and generate box plot
   for (j in 1:length(IndicatorsW)) {
@@ -88,6 +88,10 @@ for (i in 1:nrow(nameWshd)) {
     IndU <- IndUnits[j]
     Boxplots(AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir, Ind, IndL,Thrsh, IndU)
   }
+}
+for (l in 1:length(Wshd.context)) {
+  Wshd.name <- Wshd.context[l]
+
   for (k in 1:length(IndicatorsF)){
     IndF<-IndicatorsF[k]
     IndLF<-IndicaotrsF_Label[k]

@@ -43,13 +43,13 @@ BoxplotBack <- function(AOI.name, Wet.name, Wet.abbrev, dir.figs, dir.data, Inds
   source('NonRiskBoxFunction.R')
 
   #unit that is being evaluated - Watershed
-  dataWshd<-read.csv(file.path(dir.data,paste('WatershedsF_',Wet.name, ".csv",sep="")), header=T)
+  dataWshdF<-read.csv(file.path(dir.data,paste('WatershedsF_',Wet.name, ".csv",sep="")), header=T)
   #Compare to all wetlands in SSAF area
-  dataSSAF<- read.csv(file.path(dir.data,"Watersheds_ContextF.csv"),header=T)
+  dataSSAF_F<- read.csv(file.path(dir.data,"Watersheds_ContextF.csv"),header=T)
 
   #Must have 2 thresholds in thresh c(0.6,1.25), if binary then repeat c(30,30)
   threshn<-ThreshN #passing in the thresholds for the indicator
-  Box.3(dataframe1=dataWshd, dataframe2=dataSSAF,
+  Box.3(dataframe3=dataWshdF, dataframe4=dataSSAF_F,
         use.field=IndsN,
         #use.xlab=expression(Inds_Label),
         use.xlab=Inds_Label_N,

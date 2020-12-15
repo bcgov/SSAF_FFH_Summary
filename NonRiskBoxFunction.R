@@ -11,12 +11,12 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 #Box.2<-function(dataframe1, dataframe2, use.field="", use.xlab, use.units="", use.t, use.filename="", use.cuname="", use.compUnit=""){
-Box.3<-function(dataframe1, dataframe2, use.field="", use.xlab="", use.units="", use.t, use.filename="", use.cuname="", use.compUnit=""){
-  use.df1<-as.numeric(unlist(dataframe1[use.field]))
-  use.df2<-as.numeric(unlist(subset(dataframe2[use.field],dataframe2[use.field]!="-")))
-  n.df1<-length(use.df1)
-  n.df2<-length(use.df2)
-  use.xlim<-round(max(use.df2)+.1*max(use.df2))
+Box.3<-function(dataframe3, dataframe4, use.field="", use.xlab="", use.units="", use.t, use.filename="", use.cuname="", use.compUnit=""){
+  use.df3<-as.numeric(unlist(dataframe3[use.field]))
+  use.df4<-as.numeric(unlist(subset(dataframe4[use.field],dataframe4[use.field]!="-")))
+  n.df3<-length(use.df3)
+  n.df4<-length(use.df4)
+  use.xlim<-round(max(use.df4)+.1*max(use.df4))
 
   # set-up 8 x 1.5 inch PNG output file and plot margins
   png(use.filename,width=8,height=1.5,units="in",res=150)
@@ -28,7 +28,7 @@ Box.3<-function(dataframe1, dataframe2, use.field="", use.xlab="", use.units="",
   options(scipen=50)
 
   # empty plot
-  boxplot(list(use.df1,use.df2),horizontal=TRUE,las=1,
+  boxplot(list(use.df3,use.df4),horizontal=TRUE,las=1,
           medlty='blank',boxlty="blank",whisklty="blank",names=c("",""),
           staplelty='blank',outlty='blank',outpch=NA,
           xlab=use.xlab)
@@ -82,10 +82,10 @@ Box.3<-function(dataframe1, dataframe2, use.field="", use.xlab="", use.units="",
   col.med<-cust.medcol
 
   # draw boxplot
-  boxplot(list(use.df1,use.df2),horizontal=TRUE,las=1,
+  boxplot(list(use.df3,use.df4),horizontal=TRUE,las=1,
           medcol=col.med,medlwd=3,boxwex=0.5,boxlty="blank",boxfill=col.box,whisklty="solid",whiskcol=col.wsk,
           whisklwd=2,staplecol=col.spl,staplelwd=2,outcol=col.out,outcex=.75,outpch=19,
-          names=c(paste(use.cuname," Watersheds\n (n=",n.df1,")",sep=""),paste(use.compUnit, " Watersheds\n(n=",n.df2,")",sep="")),
+          names=c(paste(use.cuname," Watersheds\n (n=",n.df3,")",sep=""),paste(use.compUnit, " Watersheds\n(n=",n.df4,")",sep="")),
           #names=c(paste("\n",use.cuname,"\nspawning watersheds\n(n=",n.df1,")",sep=""),paste("All Skeena watersheds\n(n=",n.df2,")",sep="")),cex.axis=.9,
           xlab=use.xlab,add=TRUE,ljoin=1)
 
