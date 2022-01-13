@@ -46,7 +46,7 @@ SyncDirR<-file.path('/Users/jwfraser/Sync/SSAF')
 SyncDir <- file.path(SyncDirR)
 
 FFHSpatialDir <- file.path(SyncDir,'Fish and Fish Habitat/Tier 1/Assessment/Data/BoxPlot')
-ESIDir <- file.path(SyncDir,'PT and STC/Science and Technical Committee/Base Information/Data')
+ESIDir <- file.path(SyncDir,'STC and PT/Science and Technical Committee/Base Information/Data')
 
 #Not sure we need these?
 #ffhSampspatialdir <- file.path('../FFH_SkeenaESI_')

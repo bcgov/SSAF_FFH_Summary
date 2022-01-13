@@ -18,7 +18,7 @@ source("header.R")
 # #See if it is already done - computationally intensive
 # ffh_file <- file.path("tmp/ffh.spatial")
 # if (!file.exists(ffh_file)) {
-# Wshd_pts <-st_intersection(waterpt, FN) %>%
+# Wshd_pts <-st_intersection(waterpt, Wshd) %>%
 #   st_drop_geometry() %>%
 #   dplyr::select('WATERSHED_FEATURE_ID', 'MajorWshd')
 #
