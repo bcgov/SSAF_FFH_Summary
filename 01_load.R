@@ -21,54 +21,73 @@ if (!file.exists(ESI_file)) {
 }
 ESI<-readRDS(ESI_file)
 
+
+#Build out summary FN Territories based on GPKG in Sync
+terr_file <- file.path("tmp/ESI")
+if (!file.exists(terr_file)) {
+  #Load FN boundary
+  Terrin <- read_sf(file.path(ESIDir,'Boundaries/Member Boundaries'), layer = "FN_Boundaries") %>%
+    st_transform(3005)
+  FN_Terr <- st_cast(Terrin, "MULTIPOLYGON")
+  saveRDS(ESI, file = terr_file)
+}
+FN<-readRDS(terr_file)
+
 #Build out summary watershed units
 #Major Watersheds
-Wshd <- get_layer("wsc_drainages", class = "sf") %>%
-  select(SUB_DRAINAGE_AREA_NAME, SUB_SUB_DRAINAGE_AREA_NAME) %>%
-  `st_crs<-`(3005) %>%
-   st_intersection(ESI)
-saveRDS(Wshd, file = 'tmp/Wshd')
+#Wshd <- get_layer("wsc_drainages", class = "sf") %>%
+#  select(SUB_DRAINAGE_AREA_NAME, SUB_SUB_DRAINAGE_AREA_NAME) %>%
+#   st_crs<-`(3005) %>%
+#   st_intersection(ESI)
+#saveRDS(Wshd, file = 'tmp/Wshd')
 
-#drop spatial to build LUT for watershed reporting units
-Wshd.dat<- Wshd %>%
-  st_drop_geometry() %>%
-  dplyr::select(SUB_DRAINAGE_AREA_NAME, SUB_SUB_DRAINAGE_AREA_NAME)
-SkeenaE<-Wshd.dat %>%
-  dplyr::filter(SUB_SUB_DRAINAGE_AREA_NAME %in% c("Bulkley","Morice",'Babine')) %>%
-  mutate(MWshd='SkeenaE') %>%
-  dplyr::select(SUB_SUB_DRAINAGE_AREA_NAME, MWshd)
-SkeenaW<-Wshd.dat %>%
-  dplyr::filter(SUB_SUB_DRAINAGE_AREA_NAME %in% c('Lower Skeena','Central Skeena','Upper Skeena','Headwaters Skeena','Finlay')) %>%
-  mutate(MWshd='SkeenaW') %>%
-  dplyr::select(SUB_SUB_DRAINAGE_AREA_NAME, MWshd)
-Nechako<-Wshd.dat %>%
-  dplyr::filter(SUB_DRAINAGE_AREA_NAME %in% c('Nechako','Upper Fraser')) %>%
-  mutate(MWshd='Nechako') %>%
-  dplyr::select(SUB_SUB_DRAINAGE_AREA_NAME, MWshd)
-Coastal<-Wshd.dat %>%
-  dplyr::filter(SUB_DRAINAGE_AREA_NAME %in% c('Central Coastal Waters of B.C.','Stikine - Coast')) %>%
-  mutate(MWshd='Coastal') %>%
-  dplyr::select(SUB_SUB_DRAINAGE_AREA_NAME, MWshd)
-Nass<-Wshd.dat %>%
-  dplyr::filter(SUB_DRAINAGE_AREA_NAME == 'Nass - Coast') %>%
-  mutate(MWshd='Nass') %>%
-  dplyr::select(SUB_SUB_DRAINAGE_AREA_NAME, MWshd)
-
-Wshd_LUT<-rbind(Coastal, Nass, SkeenaW, SkeenaE,Nechako)
-
-#Join Wshd_LUT back to spatial group by MWshd to make summary watersheds
-MajorWshd<-Wshd %>%
-  left_join(Wshd_LUT, by='SUB_SUB_DRAINAGE_AREA_NAME') %>%
-  group_by(MWshd) %>%
-  dplyr::summarise()
-
-write_sf(MajorWshd, file.path(spatialOutDir,"MajorWshd.gpkg"))
+#
+# #drop spatial to build LUT for watershed reporting units
+# Wshd.dat<- Wshd %>%
+#   st_drop_geometry() %>%
+#   dplyr::select(SUB_DRAINAGE_AREA_NAME, SUB_SUB_DRAINAGE_AREA_NAME)
+# SkeenaE<-Wshd.dat %>%
+#   dplyr::filter(SUB_SUB_DRAINAGE_AREA_NAME %in% c("Bulkley","Morice",'Babine')) %>%
+#   mutate(MWshd='SkeenaE') %>%
+#   dplyr::select(SUB_SUB_DRAINAGE_AREA_NAME, MWshd)
+# SkeenaW<-Wshd.dat %>%
+#   dplyr::filter(SUB_SUB_DRAINAGE_AREA_NAME %in% c('Lower Skeena','Central Skeena','Upper Skeena','Headwaters Skeena','Finlay')) %>%
+#   mutate(MWshd='SkeenaW') %>%
+#   dplyr::select(SUB_SUB_DRAINAGE_AREA_NAME, MWshd)
+# Nechako<-Wshd.dat %>%
+#   dplyr::filter(SUB_DRAINAGE_AREA_NAME %in% c('Nechako','Upper Fraser')) %>%
+#   mutate(MWshd='Nechako') %>%
+#   dplyr::select(SUB_SUB_DRAINAGE_AREA_NAME, MWshd)
+# Coastal<-Wshd.dat %>%
+#   dplyr::filter(SUB_DRAINAGE_AREA_NAME %in% c('Central Coastal Waters of B.C.','Stikine - Coast')) %>%
+#   mutate(MWshd='Coastal') %>%
+#   dplyr::select(SUB_SUB_DRAINAGE_AREA_NAME, MWshd)
+# Nass<-Wshd.dat %>%
+#   dplyr::filter(SUB_DRAINAGE_AREA_NAME == 'Nass - Coast') %>%
+#   mutate(MWshd='Nass') %>%
+#   dplyr::select(SUB_SUB_DRAINAGE_AREA_NAME, MWshd)
+#
+# Wshd_LUT<-rbind(Coastal, Nass, SkeenaW, SkeenaE,Nechako)
+#
+#
+# #Join Wshd_LUT back to spatial group by MWshd to make summary watersheds
+# MajorWshd<-Wshd %>%
+#   left_join(Wshd_LUT, by='SUB_SUB_DRAINAGE_AREA_NAME') %>%
+#   group_by(MWshd) %>%
+#   dplyr::summarise()
+#
+# write_sf(MajorWshd, file.path(spatialOutDir,"MajorWshd.gpkg"))
+#
 
 #Check data
 #Wetlands
 #mapview(WetWshd) + mapview(Wshd) + mapview(WetWshd) + mapview(ESI)
+
 #Watershed
-mapview(Wshd) + mapview(ESI)
+#mapview(Wshd) + mapview(ESI)
+
+#FN
+mapview(FN) + mapview(ESI)
 # AOI for comparing watersheds to ESI full area
 AOI.spatial <- ESI
 
@@ -83,7 +102,7 @@ FFH_Watershed<-read_sf(Wshd_gdb, layer = "SSAF_2020_ForCode_201201") %>%
 #Indicator data is in wetlands file - read in from 'Wetland_Skeena_ESI_Monitoring' repo out/spatial
 #!Watershed<-read_sf(file.path(ffhspatialdir,"Wetlands3.gpkg"))
 
-#Generate an ESI Wetlands point coverage if it hasnt been done
+#Generate an ESI Watershed  point coverage if it hasnt been done
 Pt_file <- file.path("tmp/waterpt")
 if (!file.exists(Pt_file)) {
 FFH_XY <- st_centroid(FFH_Watershed)

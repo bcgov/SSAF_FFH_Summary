@@ -14,8 +14,8 @@ source('header.R')
 
 #Input variables - passed to subsequent script
 AOI<-'SkeenaESI'
-Wshd.context<-c('Nechako','SkeenaE','SkeenaW','Nass','Coastal')
-
+#Wshd.context<-c('Nechako','SkeenaE','SkeenaW','Nass','Coastal')
+FN.context<-c("Witset", "Wet'suwet'en First Nation", "Gitxsan Hereditary Chiefs", "Lake Babine Nation", "Nee-Tahi-Buhn Indian Band", "Skin Tyee Nation", "Office of the Wet'suwet'en", "Gitanyow Hereditary Chiefs Office")
 #Indicators selected for summarizing
 
 ###### Change here for Risk Indicators
@@ -76,9 +76,9 @@ source("02_clean.R")
 #Source boxplot function
 source("03_analysis_BoxPlots.R")
 
-#Do a loop for each Major Watershed
-for (i in 1:length(Wshd.context)) {
-  Wshd.name <- Wshd.context[i]
+#Do a loop for each FN Territory
+for (i in 1:length(FN.context)) {
+  FN.name <- FN.context[i]
 
   #Loop through each of the indicators and generate box plot
   for (j in 1:length(IndicatorsW)) {
@@ -86,20 +86,46 @@ for (i in 1:length(Wshd.context)) {
     IndL<-IndicatorsW_Label[j]
     Thrsh <- Thresh[[j]]
     IndU <- IndUnits[j]
-    Boxplots(AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir, Ind, IndL,Thrsh, IndU)
+    Boxplots(AOI, FN.name, FN.name, figsOutDir, dataOutDir, Ind, IndL,Thrsh, IndU)
   }
 }
-for (l in 1:length(Wshd.context)) {
-  Wshd.name <- Wshd.context[l]
+for (l in 1:length(FN.context)) {
+  FN.name <- FN.context[l]
 
   for (k in 1:length(IndicatorsF)){
     IndF<-IndicatorsF[k]
     IndLF<-IndicaotrsF_Label[k]
     ThrshF <- ThreshF[[k]]
     IndUF <- IndUnitsF[k]
-    BoxplotBack(AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir, IndF, IndLF, ThrshF, IndUF)
+    BoxplotBack(AOI, FN.name, FN.name, figsOutDir, dataOutDir, IndF, IndLF, ThrshF, IndUF)
   }
 }
+
+#
+# #Do a loop for each Major Watershed
+# for (i in 1:length(Wshd.context)) {
+#   Wshd.name <- Wshd.context[i]
+#
+#   #Loop through each of the indicators and generate box plot
+#   for (j in 1:length(IndicatorsW)) {
+#     Ind<-IndicatorsW[j]
+#     IndL<-IndicatorsW_Label[j]
+#     Thrsh <- Thresh[[j]]
+#     IndU <- IndUnits[j]
+#     Boxplots(AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir, Ind, IndL,Thrsh, IndU)
+#   }
+# }
+# for (l in 1:length(Wshd.context)) {
+#   Wshd.name <- Wshd.context[l]
+#
+#   for (k in 1:length(IndicatorsF)){
+#     IndF<-IndicatorsF[k]
+#     IndLF<-IndicaotrsF_Label[k]
+#     ThrshF <- ThreshF[[k]]
+#     IndUF <- IndUnitsF[k]
+#     BoxplotBack(AOI, Wshd.name, Wshd.name, figsOutDir, dataOutDir, IndF, IndLF, ThrshF, IndUF)
+#   }
+# }
 
 #Test
 

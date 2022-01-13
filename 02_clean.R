@@ -12,14 +12,33 @@
 
 source("header.R")
 
-#Add watersheds to wetlands
-#use centre point of wetland and assign each to a major watershed
+
+# #Add watersheds to FWA AUs
+# #use centre point of Watershed and assign each to a major watershed
+# #See if it is already done - computationally intensive
+# ffh_file <- file.path("tmp/ffh.spatial")
+# if (!file.exists(ffh_file)) {
+# Wshd_pts <-st_intersection(waterpt, FN) %>%
+#   st_drop_geometry() %>%
+#   dplyr::select('WATERSHED_FEATURE_ID', 'MajorWshd')
+#
+#
+# #join back to FFH_Watershed
+# ffh.spatial<-FFH_Watershed %>%
+#   left_join(Wshd_pts, by='WATERSHED_FEATURE_ID')
+#
+# saveRDS(ffh.spatial, file = ffh_file)
+# }
+
+#Add FN Territory to FWA AUs
+#use centre point of Watershed and assign each to a FN Territory
 #See if it is already done - computationally intensive
 ffh_file <- file.path("tmp/ffh.spatial")
 if (!file.exists(ffh_file)) {
-Wshd_pts <-st_intersection(waterpt, MajorWshd) %>%
-  st_drop_geometry() %>%
-  dplyr::select('WATERSHED_FEATURE_ID', 'MWshd')
+  Wshd_pts <-st_intersection(waterpt, FN) %>%
+    st_drop_geometry() %>%
+    dplyr::select('WATERSHED_FEATURE_ID', 'BOUNDARY_N')
+
 
 #join back to FFH_Watershed
 ffh.spatial<-FFH_Watershed %>%
